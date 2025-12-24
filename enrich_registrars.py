@@ -13,6 +13,13 @@ from pathlib import Path
 import pandas as pd
 import requests
 
+# Optional WHOIS dependency
+try:
+    import whois
+    HAS_WHOIS = True
+except ImportError:
+    HAS_WHOIS = False
+
 
 BOOTSTRAP_URL = "https://data.iana.org/rdap/dns.json"
 SESSION = requests.Session()
@@ -80,8 +87,10 @@ def parse_registrar_from_rdap(obj: dict):
 
 def whois_registrar(domain: str):
     """Query WHOIS for registrar information (fallback method)."""
+    if not HAS_WHOIS:
+        return None
+    
     try:
-        import whois
         w = whois.whois(domain)
         reg = w.registrar
         
