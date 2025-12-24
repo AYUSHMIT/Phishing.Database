@@ -92,6 +92,21 @@ _The files are updated regularly._
 
 ---
 
+## Registrar Analysis
+
+Want to identify which registrars are most frequently associated with phishing domains? We've included a comprehensive analysis pipeline that extracts domains from our database, enriches them with registrar information via RDAP/WHOIS, and generates ranked statistics.
+
+📊 **[View Registrar Analysis Documentation](REGISTRAR_ANALYSIS.md)**
+
+Quick start:
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+./run_analysis.sh 100  # Analyze 100 ACTIVE domains
+```
+
+---
+
 ## Automated Testing
 
 The testing of the domains and URLs is automated using the awesome [PyFunceble Testing Suite](https://github.com/funilrys/PyFunceble) written by Nissar Chababy _(AKA [@funilrys](https://github.com/funilrys))_. Over many years in development, this tool has become a robust and reliable source of domain and URL status. We use it in an automated environment which actively retests domains and URLs on a regular basis.
